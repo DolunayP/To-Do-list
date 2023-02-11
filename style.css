@@ -1,0 +1,93 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(226, 92, 119);
+}
+
+ul {
+    padding-left: 0px;
+}
+
+li {
+    list-style: none;
+}
+
+::placeholder {
+    color: #fff !important;
+}
+
+input[type=text],
+input [type=text]:focus {
+    color: #fff !important;
+    background-color: rgba(236, 236, 236, 0.40) !important;
+    border: none !important;
+}
+
+#todo {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: rgba(236, 236, 236, 0.8);
+}
+
+#todo .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.todo-header {
+    margin-bottom: 80px;
+}
+
+.todo-header h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.search-todo {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list-container {
+    margin-block: 24px;
+}
+
+.todo-list li {
+    margin: 4px;
+    font-weight: 500;
+    color: rgba(236, 236, 236, 0.95);
+    background: rgba(200, 58, 108, 0.8);
+}
+
+.todo-list li i {
+    cursor: pointer;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-todo {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-block: 20px;
+}
+
+.todo-filtered {
+    display: none !important;
+}
