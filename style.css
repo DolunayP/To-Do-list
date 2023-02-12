@@ -4,6 +4,14 @@ body {
     background-color: rgb(226, 92, 119);
 }
 
+button {
+    margin-block: 20px !important;
+    min-width: 10rem;
+    color: #fff !important;
+    font-weight: 400 !important;
+    border: none !important;
+}
+
 ul {
     padding-left: 0px;
 }
@@ -21,11 +29,13 @@ input [type=text]:focus {
     color: #fff !important;
     background-color: rgba(236, 236, 236, 0.40) !important;
     border: none !important;
+    min-width: 20rem;
+    ;
 }
 
 #todo {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -42,7 +52,7 @@ input [type=text]:focus {
 }
 
 .todo-header {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
 .todo-header h1 {
@@ -60,7 +70,11 @@ input [type=text]:focus {
 }
 
 .todo-list-container {
-    margin-block: 24px;
+    margin-block: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .todo-list li {
@@ -72,6 +86,8 @@ input [type=text]:focus {
 
 .todo-list li i {
     cursor: pointer;
+    margin: 4px;
+    padding: 4px;
 }
 
 .list-group-item {
@@ -80,12 +96,12 @@ input [type=text]:focus {
     align-items: center;
 }
 
-.add-todo {
+.add-todo-container {
     text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-block: 20px;
+    margin-block: 12px;
 }
 
 .todo-filtered {

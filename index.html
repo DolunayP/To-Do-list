@@ -20,35 +20,28 @@
         <div class="container">
             <div class="todo-header">
                 <h1> To-Do App </h1>
-            </div>
 
+            </div>
+            <ul class="showAlert">
+            </ul>
             <div class="search-todo">
-                <p>Listeden aramak için bir kelime giriniz...</p>
                 <form class="search">
-                    <input class="form-control" type="text" name="search" placeholder="Ara...">
+                    <input class="form-control" type="text" name="search"
+                        placeholder="Aramak istediğiniz todo giriniz...">
                 </form>
             </div>
 
             <div class="todo-list-container">
-                <p>Yapmanız gerekenler aşağıda listelenmiştir</p>
                 <ul class="list-group todo-list">
-                    <li class="list-group-item"> <span> Ekmek almaya git </span> <i
-                            class="fa-regular fa-trash-can delete"></i>
-                    </li>
-                    <li class="list-group-item"> <span> Yemek yap </span> <i class="fa-regular fa-trash-can delete"></i>
-                    </li>
-                    <li class="list-group-item"> <span> Odanı temizle </span> <i
-                            class="fa-regular fa-trash-can delete"></i>
-                    </li>
                 </ul>
+                <button class="btn btn-danger clear"> Tüm Listeyi Temizle</button>
             </div>
 
-            <div class="add-todo">
-                <p> Listeye eklemek istediğiniz işi yazınız...</p>
+            <div class="add-todo-container">
                 <form class="add">
-                    <input class="form-control" type="text" name="add" placeholder="Yeni işi giriniz">
+                    <input class="form-control" type="text" name="add" placeholder="Lütfen eklenecek todo giriniz...">
+                    <button type="submit" class="btn btn-success"> Listeye Ekle</button>
                 </form>
-
             </div>
         </div>
     </section>

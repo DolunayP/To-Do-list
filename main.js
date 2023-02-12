@@ -1,25 +1,96 @@
 const addForm = document.querySelector(".add");
-const selectTodoList = document.querySelector(".todo-list");
+const todoList = document.querySelector(".todo-list");
 const search = document.querySelector(".search input");
+const addTodoContainer = document.querySelector(".add-todo-container")
+const todoListContainer = document.querySelector(".todo-list-container")
+const alertContainer = document.querySelector(".showAlert")
+const clearButton = document.querySelector(".clear")
+const deleteTextContent = document.querySelector(".delete")
+let todos = [];
+
+
+document.addEventListener("DOMContentLoaded", pageLoaded);
+function pageLoaded() {
+    checkTodosInStorage();
+    todos.forEach(function (todo) {
+        addTodoToUI(todo);
+    });
+}
 
 addForm.addEventListener("submit", e => {
-    e.preventDefault();
     const addTodo = addForm.add.value.trim();
+    e.preventDefault();
     if (addTodo.length) {
-        addTodoList(addTodo);
-        addForm.reset();
+        addTodoToUI(addTodo);
+        addTodoToStorage(addTodo);
+        addForm.add.value = "";
+        showAlert("success", "Todo Eklendi.");
+    }
+    else {
+        showAlert("warning", "Lütfen en az bir harf giriniz!");
+    }
+
+})
+
+clearButton.addEventListener("click", e => {
+    const todoListItems = document.querySelectorAll(".list-group-item")
+    if (todoListItems.length) {
+        todoListItems.forEach(todoItem => {
+            todoItem.remove();
+        });
+
+        todos = [];
+        localStorage.setItem("todos", JSON.stringify(todos));
+        showAlert("success", "Liste başarıyla temizlendi")
+    } else {
+        showAlert("warning", "Silinecek todo bulunamadı!")
     }
 })
 
-const addTodoList = (addTodo) => {
-    const html = ` <li class="list-group-item"> <span> ${addTodo} </span> <i class="fa-regular fa-trash-can delete"></i>
+const addTodoToUI = (addTodo) => {
+    const html = `<li class="list-group-item">${addTodo}<i class="fa-regular fa-trash-can delete"></i>
                     </li> `;
-    selectTodoList.innerHTML += html;
+    todoList.innerHTML += html;
 }
 
-selectTodoList.addEventListener("click", e => {
+const addTodoToStorage = (addTodo) => {
+    checkTodosInStorage();
+    todos.push(addTodo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+const removeTodoFromUI = (e) => {
+    e.target.parentElement.remove();
+    showAlert("success", "Todo başarıyla silindi.");
+
+}
+
+const removeTodoFromStorage = (removeTodo) => {
+    checkTodosInStorage();
+    todos.forEach((todo, index) => {
+        console.log(todo)
+        console.log(removeTodo)
+        if (removeTodo === todo) {
+            todos.splice(index, 1);
+            console.log("giriyoum")
+        }
+    });
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+const checkTodosInStorage = () => {
+    if (localStorage.getItem("todos") === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+}
+
+todoList.addEventListener("click", e => {
     if (e.target.classList.contains("delete")) {
-        e.target.parentElement.remove();
+        removeTodoFromUI(e);
+        const todo = e.target.parentElement;
+        removeTodoFromStorage(todo.textContent.trim());
     }
 })
 
@@ -30,9 +101,21 @@ search.addEventListener("keyup", e => {
 
 const filterTodos = searchInput => {
 
-    Array.from(selectTodoList.children).filter(todoItem => !todoItem.textContent.toLowerCase().includes(searchInput))
+    Array.from(todoList.children).filter(todoItem => !todoItem.textContent.toLowerCase().includes(searchInput))
         .forEach(todoItem => todoItem.classList.add("todo-filtered"))
 
-    Array.from(selectTodoList.children).filter(todoItem => todoItem.textContent.toLowerCase().includes(searchInput))
+    Array.from(todoList.children).filter(todoItem => todoItem.textContent.toLowerCase().includes(searchInput))
         .forEach(todoItem => todoItem.classList.remove("todo-filtered"))
 }
+
+const showAlert = (type, message) => {
+    let alert = `<div class="alert alert-${type}" role="alert">
+    ${message} </div>`;
+    alertContainer.innerHTML += alert;
+
+    setTimeout(function () {
+        alertContainer.children[0].remove();
+    }, 3000);
+
+}
+
