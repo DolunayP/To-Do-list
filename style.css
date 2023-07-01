@@ -10,6 +10,7 @@ button {
     color: #fff !important;
     font-weight: 400 !important;
     border: none !important;
+    padding: .8rem !important;
 }
 
 ul {
@@ -30,7 +31,7 @@ input [type=text]:focus {
     background-color: rgba(236, 236, 236, 0.40) !important;
     border: none !important;
     min-width: 20rem;
-    ;
+    padding: 0.75rem
 }
 
 #todo {
