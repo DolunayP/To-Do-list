@@ -1,5 +1,6 @@
 const addForm = document.querySelector(".add");
 const todoList = document.querySelector(".todo-list");
+const searchForm = document.querySelector(".search")
 const search = document.querySelector(".search input");
 const addTodoContainer = document.querySelector(".add-todo-container")
 const todoListContainer = document.querySelector(".todo-list-container")
@@ -95,6 +96,10 @@ const checkTodosInStorage = () => {
 }
 
 // Search in the list
+searchForm.addEventListener("submit", e => {
+    e.preventDefault();
+})
+
 search.addEventListener("keyup", e => {
     const searchInput = search.value.trim().toLowerCase();
     filterTodos(searchInput);
@@ -115,5 +120,8 @@ const showAlert = (type, message) => {
     display: flex;">
     ${message} </div>`;
     alertContainer.innerHTML += alert;
+    setTimeout(() => {
+        alertContainer.innerHTML = "";
+    }, 2000);
 }
 
